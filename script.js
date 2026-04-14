@@ -18,6 +18,7 @@ const translations = {
     "hero.l2": "meets",
     "hero.l3": "craft.",
     "hero.scroll": "Scroll to taste",
+    "hero.cap": "Oaxaca · 06:42 AM",
 
     "story.label": "01 — Story",
     "story.h1": "A cup is never",
@@ -88,6 +89,7 @@ const translations = {
     "hero.l2": "encuentra",
     "hero.l3": "su oficio.",
     "hero.scroll": "Desliza para probar",
+    "hero.cap": "Oaxaca · 06:42",
 
     "story.label": "01 — Historia",
     "story.h1": "Una taza nunca es",
@@ -214,12 +216,23 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-// ---------- Soft parallax for hero title ----------
+// ---------- Soft parallax for hero ----------
 const heroTitle = document.querySelector(".hero-title");
-if (heroTitle && window.matchMedia("(min-width: 960px)").matches) {
+const heroFigure = document.querySelector(".hero-figure img");
+const heroStamp = document.querySelector(".hero-stamp");
+
+if (window.matchMedia("(min-width: 960px)").matches) {
   window.addEventListener("scroll", () => {
-    const y = Math.min(window.scrollY, 600);
-    heroTitle.style.transform = `translateY(${y * 0.15}px)`;
-    heroTitle.style.opacity = `${1 - y / 700}`;
+    const y = Math.min(window.scrollY, 700);
+    if (heroTitle) {
+      heroTitle.style.transform = `translateY(${y * 0.15}px)`;
+      heroTitle.style.opacity = `${1 - y / 800}`;
+    }
+    if (heroFigure) {
+      heroFigure.style.transform = `scale(${1.02 + y * 0.0004}) translateY(${y * -0.08}px)`;
+    }
+    if (heroStamp) {
+      heroStamp.style.transform = `translateY(${y * 0.3}px)`;
+    }
   }, { passive: true });
 }

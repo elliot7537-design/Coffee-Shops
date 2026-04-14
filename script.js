@@ -216,58 +216,51 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-// ---------- Hero parallax + scroll-reactive stamp ----------
-const heroTitle = document.querySelector(".hero-title");
-const heroFigureWrap = document.querySelector(".hero-figure-wrap");
-const heroStamp = document.querySelector("#heroStamp");
+// ---------- Hero parallax + rotating stamp (simple & bulletproof) ----------
+const heroTitle     = document.querySelector(".hero-title");
+const heroFigureWrap= document.querySelector(".hero-figure-wrap");
+const heroStamp     = document.querySelector("#heroStamp");
+const heroStampSvg  = document.querySelector("#heroStampSvg");
 
-let lastScrollY = window.scrollY;
-let scrollVelocity = 0;
-let stampAngle = 0;
-const IDLE_SPEED = 0.35;      // deg per frame — continuous idle drift
+let scrollY_ = 0;
+let lastScroll = 0;
+let velocity = 0;
+let angle = 0;
+const IDLE = 0.4; // deg/frame idle spin (~24°/sec)
 
-// Smoothed parallax targets
-let targetY = 0;
-let currentY = 0;
+function loop() {
+  // Track scroll velocity (signed)
+  const currentScroll = window.scrollY;
+  velocity = (currentScroll - lastScroll) * 0.6 + velocity * 0.85;
+  lastScroll = currentScroll;
 
-function onScroll() {
-  const y = Math.min(window.scrollY, 900);
-  const delta = window.scrollY - lastScrollY;
-  lastScrollY = window.scrollY;
-  scrollVelocity += delta;
-  targetY = y;
-}
+  // Clamp to hero range
+  scrollY_ = Math.min(currentScroll, 900);
 
-function tick() {
-  // Smooth interpolate toward target so motion feels buttery
-  currentY += (targetY - currentY) * 0.1;
-
-  // --- Stamp rotation (always-on + scroll-reactive) ---
-  scrollVelocity *= 0.9;
-  const speed = IDLE_SPEED + scrollVelocity * 0.45;
-  stampAngle = (stampAngle + speed) % 360;
-
+  // Stamp: always-on spin + scroll kick
+  angle = (angle + IDLE + velocity * 0.5) % 360;
+  if (heroStampSvg) {
+    heroStampSvg.style.transform = "rotate(" + angle + "deg)";
+  }
   if (heroStamp) {
-    heroStamp.style.setProperty("--stamp-angle", stampAngle + "deg");
-    heroStamp.style.setProperty("--counter-angle", -stampAngle + "deg");
-    heroStamp.style.setProperty("--stamp-y", currentY * 0.45 + "px");
+    // Use translate3d to force GPU & avoid conflict with CSS hover scale on inner
+    heroStamp.style.transform = "translate3d(0," + (scrollY_ * 0.45) + "px,0)";
   }
 
-  // --- Hero image parallax (wrapper translates, img stays free for ken-burns) ---
+  // Image parallax on the wrapper
   if (heroFigureWrap) {
-    heroFigureWrap.style.setProperty("--hero-parallax", currentY * -0.25 + "px");
+    heroFigureWrap.style.transform = "translate3d(0," + (scrollY_ * -0.28) + "px,0)";
   }
 
-  // --- Title parallax (unchanged, direct transform) ---
+  // Title parallax
   if (heroTitle) {
-    heroTitle.style.transform = `translateY(${currentY * 0.18}px)`;
-    heroTitle.style.opacity = `${1 - currentY / 900}`;
+    heroTitle.style.transform = "translate3d(0," + (scrollY_ * 0.18) + "px,0)";
+    heroTitle.style.opacity = Math.max(0, 1 - scrollY_ / 900);
   }
 
-  requestAnimationFrame(tick);
+  requestAnimationFrame(loop);
 }
 
-if (heroStamp || heroFigureWrap) {
-  window.addEventListener("scroll", onScroll, { passive: true });
-  requestAnimationFrame(tick);
+if (heroStampSvg || heroFigureWrap || heroTitle) {
+  requestAnimationFrame(loop);
 }

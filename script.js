@@ -218,53 +218,56 @@ document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
 // ---------- Hero parallax + scroll-reactive stamp ----------
 const heroTitle = document.querySelector(".hero-title");
-const heroFigure = document.querySelector(".hero-figure img");
+const heroFigureWrap = document.querySelector(".hero-figure-wrap");
 const heroStamp = document.querySelector("#heroStamp");
 
 let lastScrollY = window.scrollY;
 let scrollVelocity = 0;
 let stampAngle = 0;
-let idleSpeed = 0.25;   // deg per frame when not scrolling
-let rafId = null;
-let stampTranslateY = 0;
+const IDLE_SPEED = 0.35;      // deg per frame — continuous idle drift
 
-function tickStamp() {
-  // Decay velocity so motion coasts naturally
-  scrollVelocity *= 0.92;
+// Smoothed parallax targets
+let targetY = 0;
+let currentY = 0;
 
-  // Combine idle drift with scroll-driven kick
-  const speed = idleSpeed + scrollVelocity * 0.35;
+function onScroll() {
+  const y = Math.min(window.scrollY, 900);
+  const delta = window.scrollY - lastScrollY;
+  lastScrollY = window.scrollY;
+  scrollVelocity += delta;
+  targetY = y;
+}
+
+function tick() {
+  // Smooth interpolate toward target so motion feels buttery
+  currentY += (targetY - currentY) * 0.1;
+
+  // --- Stamp rotation (always-on + scroll-reactive) ---
+  scrollVelocity *= 0.9;
+  const speed = IDLE_SPEED + scrollVelocity * 0.45;
   stampAngle = (stampAngle + speed) % 360;
 
   if (heroStamp) {
     heroStamp.style.setProperty("--stamp-angle", stampAngle + "deg");
     heroStamp.style.setProperty("--counter-angle", -stampAngle + "deg");
-    heroStamp.style.setProperty(
-      "transform",
-      `translateY(${stampTranslateY}px) scale(${heroStamp.matches(":hover") ? 1.08 : 1})`
-    );
+    heroStamp.style.setProperty("--stamp-y", currentY * 0.45 + "px");
   }
-  rafId = requestAnimationFrame(tickStamp);
+
+  // --- Hero image parallax (wrapper translates, img stays free for ken-burns) ---
+  if (heroFigureWrap) {
+    heroFigureWrap.style.setProperty("--hero-parallax", currentY * -0.25 + "px");
+  }
+
+  // --- Title parallax (unchanged, direct transform) ---
+  if (heroTitle) {
+    heroTitle.style.transform = `translateY(${currentY * 0.18}px)`;
+    heroTitle.style.opacity = `${1 - currentY / 900}`;
+  }
+
+  requestAnimationFrame(tick);
 }
 
-if (heroStamp) {
-  rafId = requestAnimationFrame(tickStamp);
-}
-
-if (window.matchMedia("(min-width: 960px)").matches) {
-  window.addEventListener("scroll", () => {
-    const y = Math.min(window.scrollY, 700);
-    const delta = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-    scrollVelocity += delta; // signed — down = +, up = -
-
-    if (heroTitle) {
-      heroTitle.style.transform = `translateY(${y * 0.15}px)`;
-      heroTitle.style.opacity = `${1 - y / 800}`;
-    }
-    if (heroFigure) {
-      heroFigure.style.transform = `scale(${1.02 + y * 0.0004}) translateY(${y * -0.08}px)`;
-    }
-    stampTranslateY = y * 0.3;
-  }, { passive: true });
+if (heroStamp || heroFigureWrap) {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  requestAnimationFrame(tick);
 }

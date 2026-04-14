@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAÍZ — Café de Origen</title>
+  <meta name="description" content="RAÍZ is a Mexico-based specialty coffee shop serving ethically sourced, organic beans from Chiapas, Oaxaca, and Veracruz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span class="loader-text" data-i18n="loader">Brewing.</span>
+      <div class="loader-bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo" aria-label="RAÍZ home">
+        <span class="logo-mark">◉</span>
+        <span class="logo-text">RAÍZ</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#story" data-i18n="nav.story">Story</a>
+        <a href="#origin" data-i18n="nav.origin">Origin</a>
+        <a href="#menu" data-i18n="nav.menu">Menu</a>
+        <a href="#craft" data-i18n="nav.craft">Craft</a>
+        <a href="#visit" data-i18n="nav.visit">Visit</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-meta">
+        <span data-i18n="hero.estd">Est. Oaxaca · 2018</span>
+        <span class="dot">●</span>
+        <span data-i18n="hero.tag">Café de Especialidad</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="line"><span data-i18n="hero.l1">Where coffee</span></span>
+        <span class="line"><span data-i18n="hero.l2">meets</span></span>
+        <span class="line italic"><span data-i18n="hero.l3">craft.</span></span>
+      </h1>
+      <div class="hero-scroll">
+        <span data-i18n="hero.scroll">Scroll to taste</span>
+        <span class="arrow">↓</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Ethically Sourced</span><span class="m-dot">◉</span>
+        <span>Organic</span><span class="m-dot">◉</span>
+        <span>Small Batch</span><span class="m-dot">◉</span>
+        <span>Hecho en México</span><span class="m-dot">◉</span>
+        <span>Single Origin</span><span class="m-dot">◉</span>
+        <span>Slow Roasted</span><span class="m-dot">◉</span>
+        <span>Ethically Sourced</span><span class="m-dot">◉</span>
+        <span>Organic</span><span class="m-dot">◉</span>
+        <span>Small Batch</span><span class="m-dot">◉</span>
+        <span>Hecho en México</span><span class="m-dot">◉</span>
+        <span>Single Origin</span><span class="m-dot">◉</span>
+        <span>Slow Roasted</span><span class="m-dot">◉</span>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <section class="story" id="story">
+      <div class="section-label" data-i18n="story.label">01 — Story</div>
+      <div class="story-grid">
+        <div class="story-images">
+          <figure class="story-img reveal">
+            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1200&q=80" alt="Pour over coffee" loading="lazy" />
+          </figure>
+          <figure class="story-img small reveal" data-delay="150">
+            <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=900&q=80" alt="Café interior" loading="lazy" />
+          </figure>
+        </div>
+        <div class="story-text reveal">
+          <h2 class="h-display">
+            <span data-i18n="story.h1">A cup is never</span><br/>
+            <em data-i18n="story.h2">just a cup.</em>
+          </h2>
+          <p data-i18n="story.p1">RAÍZ began in a tiled courtyard in Oaxaca, where our founders spent summers watching abuela grind beans by hand. What started as a reverence for ritual became a shop devoted to the craft — every bean traced, every pour considered.</p>
+          <p data-i18n="story.p2">We partner directly with highland farms, roast in small batches, and serve in a space built for the slow kind of morning.</p>
+          <a href="#origin" class="btn-link"><span data-i18n="story.cta">Meet the farms</span> <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORIGIN -->
+    <section class="origin" id="origin">
+      <div class="origin-header">
+        <div class="section-label light" data-i18n="origin.label">02 — Origin</div>
+        <h2 class="h-display light">
+          <span data-i18n="origin.h1">From the mountains</span><br/>
+          <em data-i18n="origin.h2">of México.</em>
+        </h2>
+        <p class="origin-intro" data-i18n="origin.intro">Every bean we brew is grown within our borders. Single-origin, shade-grown, and harvested by cooperatives we know by name.</p>
+      </div>
+
+      <div class="origins-grid">
+        <article class="origin-card reveal">
+          <div class="origin-media">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=1000&q=80" alt="Chiapas highlands" loading="lazy" />
+            <span class="origin-coord">15.76°N · 92.63°W</span>
+          </div>
+          <div class="origin-body">
+            <h3>Chiapas</h3>
+            <p data-i18n="origin.chiapas.p">Grown at 1,400m in the Sierra Madre. Expect notes of cocoa nib, dried fig, and a soft, syrupy finish.</p>
+            <ul class="chips">
+              <li>Bourbon</li><li>Typica</li><li>Washed</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="origin-card reveal" data-delay="120">
+          <div class="origin-media">
+            <img src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=1000&q=80" alt="Oaxaca valley" loading="lazy" />
+            <span class="origin-coord">17.06°N · 96.72°W</span>
+          </div>
+          <div class="origin-body">
+            <h3>Oaxaca</h3>
+            <p data-i18n="origin.oaxaca.p">Our home. Pluma Hidalgo farms deliver bright citrus, milk chocolate, and the gentlest honey sweetness.</p>
+            <ul class="chips">
+              <li>Pluma</li><li>Mundo Novo</li><li>Natural</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="origin-card reveal" data-delay="240">
+          <div class="origin-media">
+            <img src="https://images.unsplash.com/photo-1559525839-d9acfd259ed7?w=1000&q=80" alt="Veracruz coast" loading="lazy" />
+            <span class="origin-coord">19.17°N · 96.13°W</span>
+          </div>
+          <div class="origin-body">
+            <h3>Veracruz</h3>
+            <p data-i18n="origin.veracruz.p">Coastal heat and volcanic soil yield a clean cup — toasted almond, brown sugar, and a whisper of orange zest.</p>
+            <ul class="chips">
+              <li>Garnica</li><li>Catuai</li><li>Honey</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="ethics reveal">
+        <div class="ethics-grid">
+          <div>
+            <span class="ethics-num">100%</span>
+            <p data-i18n="ethics.1">Organic certified harvest, no synthetic inputs.</p>
+          </div>
+          <div>
+            <span class="ethics-num">12</span>
+            <p data-i18n="ethics.2">Cooperatives we pay above fair-trade price.</p>
+          </div>
+          <div>
+            <span class="ethics-num">0</span>
+            <p data-i18n="ethics.3">Middlemen between the farm and our roaster.</p>
+          </div>
+          <div>
+            <span class="ethics-num">↻</span>
+            <p data-i18n="ethics.4">Compostable cups and returnable ceramics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+      <div class="section-label" data-i18n="menu.label">03 — Menu</div>
+      <h2 class="h-display menu-title">
+        <span data-i18n="menu.h1">Brews &</span>
+        <em data-i18n="menu.h2">rituals.</em>
+      </h2>
+
+      <div class="menu-layout">
+        <div class="menu-col">
+          <h3 class="menu-group" data-i18n="menu.coffee">Café</h3>
+          <ul class="menu-list">
+            <li><span class="mi-name">Espresso</span><span class="mi-dots"></span><span class="mi-price">$45</span></li>
+            <li><span class="mi-name">Cortado</span><span class="mi-dots"></span><span class="mi-price">$55</span></li>
+            <li><span class="mi-name">Flat White</span><span class="mi-dots"></span><span class="mi-price">$65</span></li>
+            <li><span class="mi-name">Café de Olla</span><span class="mi-dots"></span><span class="mi-price">$55</span></li>
+            <li><span class="mi-name">Americano</span><span class="mi-dots"></span><span class="mi-price">$50</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-col">
+          <h3 class="menu-group" data-i18n="menu.brewlab">Brew Lab</h3>
+          <ul class="menu-list">
+            <li><span class="mi-name">V60 Pour Over</span><span class="mi-dots"></span><span class="mi-price">$90</span></li>
+            <li><span class="mi-name">Chemex</span><span class="mi-dots"></span><span class="mi-price">$95</span></li>
+            <li><span class="mi-name">Aeropress</span><span class="mi-dots"></span><span class="mi-price">$85</span></li>
+            <li><span class="mi-name">Cold Brew</span><span class="mi-dots"></span><span class="mi-price">$75</span></li>
+            <li><span class="mi-name">Nitro</span><span class="mi-dots"></span><span class="mi-price">$90</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-col">
+          <h3 class="menu-group" data-i18n="menu.bites">Bites</h3>
+          <ul class="menu-list">
+            <li><span class="mi-name">Concha de cardamomo</span><span class="mi-dots"></span><span class="mi-price">$45</span></li>
+            <li><span class="mi-name">Pan de elote</span><span class="mi-dots"></span><span class="mi-price">$55</span></li>
+            <li><span class="mi-name">Tostada de aguacate</span><span class="mi-dots"></span><span class="mi-price">$120</span></li>
+            <li><span class="mi-name">Chilaquiles verdes</span><span class="mi-dots"></span><span class="mi-price">$140</span></li>
+            <li><span class="mi-name">Granola de cacao</span><span class="mi-dots"></span><span class="mi-price">$95</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRAFT / GALLERY -->
+    <section class="craft" id="craft">
+      <div class="craft-top">
+        <div class="section-label light" data-i18n="craft.label">04 — Craft</div>
+        <h2 class="h-display light">
+          <span data-i18n="craft.h1">The art</span><br/>
+          <em data-i18n="craft.h2">of the pour.</em>
+        </h2>
+        <p class="craft-intro" data-i18n="craft.intro">Coffee is chemistry, choreography, and a little bit of theater. Our baristas train for months — not to perform, but to disappear behind the cup.</p>
+      </div>
+
+      <div class="gallery">
+        <figure class="g-1 reveal"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80" alt="Barista pulling espresso" loading="lazy" /></figure>
+        <figure class="g-2 reveal" data-delay="100"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=80" alt="Latte art" loading="lazy" /></figure>
+        <figure class="g-3 reveal" data-delay="200"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&q=80" alt="Green beans" loading="lazy" /></figure>
+        <figure class="g-4 reveal" data-delay="300"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=900&q=80" alt="Coffee beans close up" loading="lazy" /></figure>
+        <figure class="g-5 reveal" data-delay="150"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=900&q=80" alt="Café patrons" loading="lazy" /></figure>
+        <figure class="g-6 reveal" data-delay="250"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=900&q=80" alt="Coffee grinder" loading="lazy" /></figure>
+      </div>
+
+      <div class="pull-quote reveal">
+        <p>
+          <span data-i18n="quote.1">"We don't sell coffee —</span><br/>
+          <em data-i18n="quote.2">we translate a place into a cup."</em>
+        </p>
+        <span class="quote-by" data-i18n="quote.by">— Lucía Mendoza, Head Roaster</span>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="visit" id="visit">
+      <div class="visit-grid">
+        <div class="visit-left">
+          <div class="section-label" data-i18n="visit.label">05 — Visit</div>
+          <h2 class="h-display">
+            <span data-i18n="visit.h1">Come in.</span><br/>
+            <em data-i18n="visit.h2">Stay a while.</em>
+          </h2>
+          <div class="visit-meta">
+            <div>
+              <h4 data-i18n="visit.hours">Hours</h4>
+              <p>07:00 — 20:00</p>
+              <p class="muted" data-i18n="visit.days">Mon – Sun</p>
+            </div>
+            <div>
+              <h4 data-i18n="visit.address">Address</h4>
+              <p>Calle García Vigil 304</p>
+              <p class="muted">Centro, Oaxaca 68000</p>
+            </div>
+            <div>
+              <h4 data-i18n="visit.contact">Contact</h4>
+              <p>hola@raiz.mx</p>
+              <p class="muted">+52 951 514 0000</p>
+            </div>
+          </div>
+          <a class="btn" href="#"><span data-i18n="visit.cta">Reserve a table</span> <span>→</span></a>
+        </div>
+        <div class="visit-right reveal">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&q=80" alt="Café exterior" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-top">
+        <h2 class="footer-title">
+          <span data-i18n="footer.h1">Let's brew</span>
+          <em data-i18n="footer.h2">something together.</em>
+        </h2>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <div class="logo large">
+            <span class="logo-mark">◉</span>
+            <span class="logo-text">RAÍZ</span>
+          </div>
+          <p class="muted" data-i18n="footer.note">Café de origen mexicano. Hecho despacio.</p>
+        </div>
+        <div>
+          <h5 data-i18n="footer.explore">Explore</h5>
+          <a href="#story" data-i18n="nav.story">Story</a>
+          <a href="#origin" data-i18n="nav.origin">Origin</a>
+          <a href="#menu" data-i18n="nav.menu">Menu</a>
+        </div>
+        <div>
+          <h5 data-i18n="footer.follow">Follow</h5>
+          <a href="#">Instagram</a>
+          <a href="#">Spotify</a>
+          <a href="#">Journal</a>
+        </div>
+        <div>
+          <h5 data-i18n="footer.subscribe">Newsletter</h5>
+          <form class="sub" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('.sub-ok').classList.add('on');">
+            <input type="email" placeholder="you@email.com" required />
+            <button>→</button>
+            <span class="sub-ok" data-i18n="footer.thanks">Gracias.</span>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 RAÍZ Café</span>
+        <span data-i18n="footer.made">Made slowly in México.</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

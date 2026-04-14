@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <!-- Grain overlay -->
@@ -74,20 +74,18 @@
           </figure>
         </div>
         <a href="#story" class="hero-stamp" id="heroStamp" aria-label="Discover our story">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs>
-              <path id="circlePath" d="M 60, 60 m -46, 0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0" />
-            </defs>
-            <text class="stamp-text">
-              <textPath href="#circlePath" startOffset="0">
-                RAÍZ · CAFÉ DE ORIGEN · ESTD 2018 · HECHO DESPACIO ·
-              </textPath>
-            </text>
-            <g class="stamp-center">
-              <text x="60" y="66" class="stamp-mark" text-anchor="middle">◉</text>
-              <text x="60" y="68" class="stamp-arrow" text-anchor="middle">→</text>
-            </g>
-          </svg>
+          <div class="hero-stamp-inner">
+            <svg viewBox="0 0 120 120" aria-hidden="true" id="heroStampSvg">
+              <defs>
+                <path id="circlePath" d="M 60, 60 m -46, 0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0" />
+              </defs>
+              <text class="stamp-text">
+                <textPath href="#circlePath" startOffset="0">
+                  RAÍZ · CAFÉ DE ORIGEN · ESTD 2018 · HECHO DESPACIO ·
+                </textPath>
+              </text>
+            </svg>
+          </div>
         </a>
       </div>
 
@@ -367,6 +365,6 @@
     </footer>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

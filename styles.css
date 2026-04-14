@@ -297,34 +297,95 @@ a { color: inherit; text-decoration: none; }
   color: var(--clay);
 }
 
-/* Rotating circular stamp */
+/* Rotating circular stamp — scroll- and hover-reactive */
 .hero-stamp {
   position: absolute;
-  left: -3.5rem;
-  bottom: -2rem;
-  width: 130px;
-  height: 130px;
-  z-index: 2;
+  left: -4.5rem;
+  bottom: -3rem;
+  width: 170px;
+  height: 170px;
+  z-index: 3;
+  display: block;
+  cursor: pointer;
   opacity: 0;
   animation: fadeUp 0.9s var(--ease) 1.3s forwards;
+  transition: transform 0.5s var(--ease), filter 0.5s;
+  will-change: transform;
+}
+.hero-stamp::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 10px 40px -12px rgba(26, 21, 18, 0.35),
+              0 0 0 1px rgba(26, 21, 18, 0.06);
+  transition: background 0.5s, box-shadow 0.5s;
+  z-index: -1;
 }
 .hero-stamp svg {
   width: 100%;
   height: 100%;
-  animation: spin 26s linear infinite;
+  transform: rotate(var(--stamp-angle, 0deg));
+  transition: transform 0.1s linear;
 }
 .hero-stamp .stamp-text {
   font-family: var(--f-sans);
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   fill: var(--ink);
   text-transform: uppercase;
+  transition: fill 0.4s;
+}
+.hero-stamp .stamp-center {
+  transform-origin: 60px 60px;
+  transition: transform 0.5s var(--ease);
 }
 .hero-stamp .stamp-mark {
   font-family: var(--f-display);
-  font-size: 22px;
+  font-size: 26px;
   fill: var(--terra);
+  opacity: 1;
+  transition: opacity 0.3s, transform 0.5s var(--ease);
+  transform-origin: 60px 60px;
+}
+.hero-stamp .stamp-arrow {
+  font-family: var(--f-sans);
+  font-weight: 300;
+  font-size: 30px;
+  fill: var(--terra);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.5s var(--ease);
+  transform-origin: 60px 60px;
+  transform: translateX(-10px);
+}
+
+/* Hover: grow, recolor, swap mark for arrow, counter-rotate center */
+.hero-stamp:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 12px 28px rgba(183, 82, 46, 0.25));
+}
+.hero-stamp:hover::before {
+  background: var(--ink);
+  box-shadow: 0 18px 50px -12px rgba(26, 21, 18, 0.55);
+}
+.hero-stamp:hover .stamp-text {
+  fill: var(--cream);
+}
+.hero-stamp:hover .stamp-mark {
+  opacity: 0;
+  transform: rotate(var(--counter-angle, 0deg)) scale(0.5) translateX(10px);
+}
+.hero-stamp:hover .stamp-arrow {
+  opacity: 1;
+  fill: var(--clay);
+  transform: rotate(var(--counter-angle, 0deg)) translateX(0);
+}
+.hero-stamp:active { transform: scale(1.02); }
+.hero-stamp:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 0 0 2px var(--terra));
 }
 
 @keyframes heroReveal {
